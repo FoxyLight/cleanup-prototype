@@ -15,7 +15,7 @@ Local authoritative working root:
 C:\Users\jneal\Documents\Projects\cleanup-prototype
 
 Authoritative baseline commit SHA:
-PENDING INITIAL BASELINE COMMIT
+60a8d203f6681ad21f3548a2d9c30bf779c26914
 
 ## Current authoritative implementation state
 
@@ -69,7 +69,7 @@ Human validation inherited from historical checkpoint evidence:
 
 ## Next Evidence Source
 
-Establish and push the immutable CP4A baseline commit, then record its exact SHA.
+Theme Park Checkpoint 5 implementation from the immutable CP4A baseline.
 
 After repository authority is established, Theme Park Checkpoint 5 is the next implementation checkpoint.
 
@@ -80,4 +80,4 @@ Do not begin:
 - final carousel payoff
 - Movie Studio implementation
 
-until SPBT onboarding is PASS / CLOSED with an immutable baseline SHA.
+until explicitly authorized under SPBT checkpoint control.
