@@ -9,11 +9,6 @@ Process: SPBT
 Documentation authority:
 Google Drive / Cleanup Game
 
-Authoritative Drive documents:
-- PROJECT_STATUS.md
-- DECISIONS.md
-- DOCUMENTATION_INDEX.md
-
 Implementation/source-history authority:
 GitHub repository FoxyLight/cleanup-prototype
 
@@ -23,13 +18,22 @@ main
 Local working root:
 C:\Users\jneal\Documents\Projects\cleanup-prototype
 
-## Immutable repository baseline
+## Immutable baselines
 
 Authoritative CP4A implementation baseline SHA:
 60a8d203f6681ad21f3548a2d9c30bf779c26914
 
 SPBT onboarding closure commit:
 890dc2d
+
+Authoritative Theme Park Checkpoint 5 integrated implementation SHA:
+797cd169c1e81e3277291af892d5d4014c4acfe2
+
+Checkpoint 5 candidate commit:
+1f9711e
+
+Checkpoint 5 merge commit:
+4a0b941
 
 Shared Interaction Baseline v0.1.3:
 PASS / FROZEN
@@ -44,79 +48,59 @@ Frozen values:
 
 ## Theme Park Restoration state
 
-Closed historical checkpoints:
-- Checkpoint 1: PASS
-- Checkpoint 2: PASS
-- Checkpoint 3B: PASS
-- Checkpoint 4: PASS
-- Checkpoint 4A: PASS
+Closed checkpoints:
+- Checkpoint 1: PASS / CLOSED
+- Checkpoint 2: PASS / CLOSED
+- Checkpoint 3B: PASS / CLOSED
+- Checkpoint 4: PASS / CLOSED
+- Checkpoint 4A: PASS / CLOSED
+- Checkpoint 5: PASS / CLOSED
 
-Validated content:
+Validated Theme Park content:
 - 8 cleanable surfaces
 - 7 litter objects
 - 3 debris clusters
 - 18 total required targets
 
-Additional validated findings:
-- carousel horse accessibility: PASS
-- carousel horse practical full-clean time: approximately 58 seconds, accepted
-- table UV correction: PASS
-- bench UV correction: PASS
-- 18-target progress integration: PASS
-
-## Active checkpoint
-
-Checkpoint:
-Theme Park Checkpoint 5 — Entrance/Plaza Local Completion Cue
-
-State:
-IMPLEMENTED / VERIFIED / HUMAN APPROVAL PASS / AWAITING REPOSITORY COMMIT AND INTEGRATION
-
-Authorized behavior:
-- cue requires both entrance_paving and entrance_sign
+Checkpoint 5 behavior:
+- requires both entrance_paving and entrance_sign
 - either completion order works
-- cue triggers once per completion cycle
-- existing 18-target progress controller remains authoritative
-- payoff is local to the entrance sign
-- reset clears the cue and permits a fresh trigger
-- frozen Shared Interaction Baseline remains unchanged
+- triggers once per completion cycle
+- uses the existing 18-target progress controller
+- produces a restrained local visual cue on the entrance sign
+- resets cleanly
+- does not alter the frozen Shared Interaction Baseline
 
-Automated verification:
+Checkpoint 5 automated verification:
 - Godot parse/load integrity: PASS
 - Theme Park entrance cue tests: PASS
 - Theme Park progress regression: PASS
 - Theme Park loose-mess regression: PASS
 - Shared Interaction Baseline regression: PASS
 
-Human approval:
-- entrance paving gating: PASS
-- entrance sign gating: PASS
-- order independence: PASS
-- one-shot local cue: PASS
-- local visual payoff: PASS
-- fresh-run/reset presentation: PASS
-- no unintended gameplay regression observed
+Checkpoint 5 human approval:
+PASS
 
-Candidate checkpoint commit SHA:
-NOT YET ESTABLISHED
-
-Integrated main SHA:
-NOT YET ESTABLISHED
+Repository hygiene:
+- final integrated main working tree: CLEAN
+- Godot test UID tracked
+- final integrated implementation SHA: 797cd169c1e81e3277291af892d5d4014c4acfe2
 
 ## Movie Studio Cleanup
 
 Design exists.
-Implementation is not authorized during the active Theme Park checkpoint.
+Implementation is not yet authorized.
 
 ## Next Evidence Source
 
-Establish the exact Checkpoint 5 candidate commit on the feature branch, push it, integrate it into main after the approved verification state, capture the immutable integrated main SHA, then update Drive and repository authority copies and mark Checkpoint 5 PASS / CLOSED.
+Design and implement the final 18-target carousel payoff from the immutable Checkpoint 5 integrated baseline.
 
 ## Current boundary
 
-Do not begin:
-- final 18-target carousel payoff
+Authorized next:
+- final Theme Park 18-target carousel payoff
+
+Not authorized:
 - Movie Studio implementation
 - changes to Shared Interaction Baseline v0.1.3
-
-until Checkpoint 5 is integrated and closed under SPBT.
+- unrelated workflow infrastructure
