@@ -4,38 +4,31 @@
 
 Status: ACCEPTED
 
-Cleanup Game uses the current SPBT workflow for repository authority, checkpoint verification, human approval, immutable implementation baselines, and project-state tracking.
+Cleanup Game uses SPBT for authority, checkpoint verification, explicit human approval, integration, immutable implementation identity, and closure.
 
-## D-002 — Repository authority
+## D-002 — Split documentation and implementation authority
 
 Status: ACCEPTED
 
-Authoritative repository:
-FoxyLight/cleanup-prototype
+Google Drive is the project-documentation authority.
 
-Integration branch:
-main
+GitHub repository FoxyLight/cleanup-prototype is the implementation/source-history authority.
 
-Local working root:
-C:\Users\jneal\Documents\Projects\cleanup-prototype
+Repository-local copies of PROJECT_STATUS.md, DECISIONS.md, and DOCUMENTATION_INDEX.md mirror the Drive authority at decision and checkpoint boundaries. When they differ, Drive owns project-documentation meaning and GitHub owns executable implementation identity.
 
 ## D-003 — Historical CP4A recovery
 
 Status: ACCEPTED
 
-The historically validated implementation from:
+The historically validated implementation at:
 
 C:\Users\jneal\Downloads\cleanup-prototype-validation
 
-was used as the recovery source for existing-project onboarding.
+was used as the recovery source during existing-project SPBT onboarding.
 
-The candidate repository initially contained material implementation drift in:
-- project.godot
-- scenes/neutral_test.tscn
+The candidate repository shell contained material implementation drift in project.godot and scenes/neutral_test.tscn. Those candidate files were not promoted.
 
-Those candidate files were not promoted.
-
-The validated historical implementation was restored and then verified before repository authority was established.
+The validated historical implementation was restored and verified before repository authority was established.
 
 ## D-004 — Shared Interaction Baseline freeze
 
@@ -51,19 +44,55 @@ Frozen values:
 - cleaning rate: 6.0 dirt units/sec
 - cleanable completion threshold: 95%
 
-Changes to these values require explicit reopening of the baseline decision.
+Changing these values requires explicitly reopening the baseline decision.
 
 ## D-005 — Theme Park historical checkpoint authority
 
 Status: ACCEPTED
 
-Historically validated Theme Park checkpoints through Checkpoint 4A are accepted as historical evidence and have been reconciled with the recovered implementation tree.
+Theme Park checkpoints through Checkpoint 4A are accepted as validated historical evidence and were reconciled to the recovered implementation tree.
 
-Checkpoint 5 is not part of this baseline and must proceed as a new SPBT implementation checkpoint.
+Authoritative CP4A implementation baseline:
+60a8d203f6681ad21f3548a2d9c30bf779c26914
 
-## D-006 — Project portfolio state
+## D-006 — Portfolio state
 
 Status: ACCEPTED
 
-Cleanup Game portfolio status:
+Cleanup Game portfolio state:
 ACTIVE
+
+## D-007 — Theme Park Checkpoint 5 scope
+
+Status: ACCEPTED
+
+Checkpoint 5 is limited to the Entrance/Plaza local completion cue.
+
+The cue:
+- requires entrance_paving and entrance_sign completion
+- works in either completion order
+- triggers only once per completion cycle
+- reuses the existing 18-target progress state
+- provides a restrained local visual response on the entrance sign
+- resets cleanly
+- does not introduce the final carousel payoff
+- does not alter the frozen Shared Interaction Baseline
+- does not authorize Movie Studio implementation
+
+## D-008 — Theme Park Checkpoint 5 approval state
+
+Status: ACCEPTED
+
+Checkpoint 5 automated verification and human approval have passed.
+
+The checkpoint is not PASS / CLOSED until the exact candidate is committed, integrated into main, and the immutable integrated SHA is recorded in both Drive authority and the GitHub repository-local authority copies.
+
+## D-009 — Authority synchronization rule
+
+Status: ACCEPTED
+
+At project-decision and checkpoint-closure boundaries:
+1. Drive authority documents are updated to the verified state.
+2. Repository-local authority copies are reconciled to that state.
+3. Implementation integration and immutable SHA are recorded where implementation identity matters.
+4. A checkpoint is not declared PASS / CLOSED while either authority surface materially contradicts the other.
