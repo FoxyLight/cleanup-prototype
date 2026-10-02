@@ -1,0 +1,295 @@
+[gd_scene load_steps=24 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/theme_park/entrance_paving.gd" id="2_paving"]
+[ext_resource type="Script" path="res://scripts/theme_park/entrance_sign.gd" id="3_sign"]
+[ext_resource type="Script" path="res://scripts/theme_park/seating_paving.gd" id="4_seating"]
+[ext_resource type="Script" path="res://scripts/theme_park/table_cleanable.gd" id="5_table"]
+[ext_resource type="Script" path="res://scripts/theme_park/bench_cleanable.gd" id="6_bench"]
+[ext_resource type="Script" path="res://scripts/theme_park/carousel_platform.gd" id="7_platform"]
+[ext_resource type="Script" path="res://scripts/theme_park/carousel_railing.gd" id="8_railing"]
+[ext_resource type="Script" path="res://scripts/theme_park/carousel_horse.gd" id="9_horse"]
+[ext_resource type="Script" path="res://scripts/theme_park/litter_object.gd" id="10_litter"]
+[ext_resource type="Script" path="res://scripts/theme_park/debris_cluster.gd" id="11_debris"]
+[ext_resource type="Script" path="res://scripts/theme_park/theme_park_courtyard.gd" id="12_controller"]
+
+[sub_resource type="BoxMesh" id="GroundMesh"]
+size = Vector3(14, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="GroundShape"]
+size = Vector3(14, 0.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="GroundMaterial"]
+albedo_color = Color(0.18, 0.32, 0.16, 1)
+
+[sub_resource type="BoxMesh" id="LongBoundaryMesh"]
+size = Vector3(14, 1.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="LongBoundaryShape"]
+size = Vector3(14, 1.2, 0.2)
+
+[sub_resource type="BoxMesh" id="ShortBoundaryMesh"]
+size = Vector3(0.2, 1.2, 10)
+
+[sub_resource type="BoxShape3D" id="ShortBoundaryShape"]
+size = Vector3(0.2, 1.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="BoundaryMaterial"]
+albedo_color = Color(0.22, 0.17, 0.12, 1)
+
+[sub_resource type="BoxMesh" id="SignPostMesh"]
+size = Vector3(0.12, 1.6, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="SignPostMaterial"]
+albedo_color = Color(0.35, 0.22, 0.08, 1)
+
+[sub_resource type="BoxMesh" id="BenchSeatThicknessMesh"]
+size = Vector3(1.8, 0.10, 0.50)
+
+[sub_resource type="BoxMesh" id="BenchBackThicknessMesh"]
+size = Vector3(1.8, 0.80, 0.08)
+
+[sub_resource type="BoxMesh" id="BenchLegMesh"]
+size = Vector3(0.12, 0.55, 0.12)
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.48, 0.67, 0.82, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.65
+
+[node name="CarouselCourtyard" type="Node3D"]
+script = ExtResource("12_controller")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+shadow_enabled = true
+
+[node name="BaseGround" type="StaticBody3D" parent="."]
+position = Vector3(7, -0.1, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseGround"]
+mesh = SubResource("GroundMesh")
+material_override = SubResource("GroundMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseGround"]
+shape = SubResource("GroundShape")
+
+[node name="NorthBoundary" type="StaticBody3D" parent="."]
+position = Vector3(7, 0.6, 10)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NorthBoundary"]
+mesh = SubResource("LongBoundaryMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthBoundary"]
+shape = SubResource("LongBoundaryShape")
+
+[node name="SouthBoundary" type="StaticBody3D" parent="."]
+position = Vector3(7, 0.6, 0)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SouthBoundary"]
+mesh = SubResource("LongBoundaryMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthBoundary"]
+shape = SubResource("LongBoundaryShape")
+
+[node name="EastBoundary" type="StaticBody3D" parent="."]
+position = Vector3(14, 0.6, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EastBoundary"]
+mesh = SubResource("ShortBoundaryMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EastBoundary"]
+shape = SubResource("ShortBoundaryShape")
+
+[node name="WestBoundary" type="StaticBody3D" parent="."]
+position = Vector3(0, 0.6, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WestBoundary"]
+mesh = SubResource("ShortBoundaryMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestBoundary"]
+shape = SubResource("ShortBoundaryShape")
+
+[node name="EntrancePaving" type="StaticBody3D" parent="."]
+position = Vector3(7, 0.02, 1.75)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.58, 0.52, 0.44, 1)
+dirty_color = Color(0.24, 0.15, 0.07, 1)
+script = ExtResource("2_paving")
+
+[node name="EntranceSign" type="StaticBody3D" parent="."]
+position = Vector3(11.5, 1.35, 2.5)
+rotation_degrees = Vector3(0, 0, 0)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.78, 0.20, 0.18, 1)
+dirty_color = Color(0.24, 0.13, 0.08, 1)
+script = ExtResource("3_sign")
+
+[node name="LeftPost" type="MeshInstance3D" parent="EntranceSign"]
+position = Vector3(-0.9, -1.4, 0)
+mesh = SubResource("SignPostMesh")
+material_override = SubResource("SignPostMaterial")
+
+[node name="RightPost" type="MeshInstance3D" parent="EntranceSign"]
+position = Vector3(0.9, -1.4, 0)
+mesh = SubResource("SignPostMesh")
+material_override = SubResource("SignPostMaterial")
+
+[node name="ZoneBMarker" type="MeshInstance3D" parent="."]
+position = Vector3(3, 0.02, 6.75)
+
+[node name="ZoneCMarker" type="MeshInstance3D" parent="."]
+position = Vector3(10, 0.02, 6.75)
+
+[node name="SeatingPaving" type="StaticBody3D" parent="."]
+position = Vector3(3, 0.025, 6.75)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.52, 0.48, 0.42, 1)
+dirty_color = Color(0.22, 0.14, 0.07, 1)
+script = ExtResource("4_seating")
+
+[node name="Table" type="StaticBody3D" parent="."]
+position = Vector3(2.5, 0.90, 6.5)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.38, 0.20, 0.08, 1)
+dirty_color = Color(0.18, 0.10, 0.04, 1)
+script = ExtResource("5_table")
+
+[node name="Bench" type="StaticBody3D" parent="."]
+position = Vector3(4.5, 0.55, 8)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.42, 0.22, 0.09, 1)
+dirty_color = Color(0.18, 0.10, 0.04, 1)
+script = ExtResource("6_bench")
+
+[node name="SeatThickness" type="MeshInstance3D" parent="Bench"]
+position = Vector3(0, -0.05, 0)
+mesh = SubResource("BenchSeatThicknessMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="BackThickness" type="MeshInstance3D" parent="Bench"]
+position = Vector3(0, 0.40, 0.29)
+mesh = SubResource("BenchBackThicknessMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="FrontLeftLeg" type="MeshInstance3D" parent="Bench"]
+position = Vector3(-0.68, -0.325, -0.17)
+mesh = SubResource("BenchLegMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="FrontRightLeg" type="MeshInstance3D" parent="Bench"]
+position = Vector3(0.68, -0.325, -0.17)
+mesh = SubResource("BenchLegMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="RearLeftLeg" type="MeshInstance3D" parent="Bench"]
+position = Vector3(-0.68, -0.325, 0.17)
+mesh = SubResource("BenchLegMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="RearRightLeg" type="MeshInstance3D" parent="Bench"]
+position = Vector3(0.68, -0.325, 0.17)
+mesh = SubResource("BenchLegMesh")
+material_override = SubResource("BoundaryMaterial")
+
+[node name="CarouselPlatform" type="StaticBody3D" parent="."]
+position = Vector3(10, 0.04, 6.75)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.72, 0.57, 0.28, 1)
+dirty_color = Color(0.27, 0.16, 0.07, 1)
+script = ExtResource("7_platform")
+
+[node name="CarouselRailing" type="StaticBody3D" parent="."]
+position = Vector3(10, 0.72, 4.72)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.82, 0.18, 0.16, 1)
+dirty_color = Color(0.24, 0.11, 0.06, 1)
+script = ExtResource("8_railing")
+
+[node name="CarouselHorse" type="StaticBody3D" parent="."]
+position = Vector3(10, 0.55, 7)
+rotation_degrees = Vector3(0, -20, 0)
+collision_layer = 2
+collision_mask = 0
+clean_color = Color(0.88, 0.83, 0.68, 1)
+dirty_color = Color(0.25, 0.16, 0.08, 1)
+script = ExtResource("9_horse")
+
+[node name="LitterPrototype" type="Area3D" parent="."]
+position = Vector3(1.25, 0.08, 5.15)
+script = ExtResource("10_litter")
+target_id = &"litter_01"
+
+[node name="DebrisPrototype" type="Area3D" parent="."]
+position = Vector3(3.65, 0.08, 5.10)
+script = ExtResource("11_debris")
+target_id = &"debris_01"
+
+[node name="Litter02" type="Area3D" parent="."]
+position = Vector3(0.90, 0.08, 6.40)
+script = ExtResource("10_litter")
+target_id = &"litter_02"
+
+[node name="Litter03" type="Area3D" parent="."]
+position = Vector3(1.45, 0.08, 8.75)
+script = ExtResource("10_litter")
+target_id = &"litter_03"
+
+[node name="Litter04" type="Area3D" parent="."]
+position = Vector3(2.90, 0.08, 4.40)
+script = ExtResource("10_litter")
+target_id = &"litter_04"
+
+[node name="Litter05" type="Area3D" parent="."]
+position = Vector3(3.25, 0.08, 7.45)
+script = ExtResource("10_litter")
+target_id = &"litter_05"
+
+[node name="Litter06" type="Area3D" parent="."]
+position = Vector3(5.20, 0.08, 5.65)
+script = ExtResource("10_litter")
+target_id = &"litter_06"
+
+[node name="Litter07" type="Area3D" parent="."]
+position = Vector3(5.25, 0.08, 9.10)
+script = ExtResource("10_litter")
+target_id = &"litter_07"
+
+[node name="Debris02" type="Area3D" parent="."]
+position = Vector3(1.15, 0.08, 7.55)
+script = ExtResource("11_debris")
+target_id = &"debris_02"
+
+[node name="Debris03" type="Area3D" parent="."]
+position = Vector3(5.15, 0.08, 6.70)
+script = ExtResource("11_debris")
+target_id = &"debris_03"
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(2, 1, 1)
+rotation_degrees = Vector3(0, -25, 0)

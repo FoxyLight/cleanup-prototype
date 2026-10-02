@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/cleanable_panel.gd" id="2_cleanable"]
+[ext_resource type="Script" path="res://scripts/vertical_cleanable.gd" id="3_vertical"]
+[ext_resource type="Script" path="res://scripts/cube_cleanable.gd" id="4_cube"]
+[ext_resource type="Script" path="res://scripts/movable_object.gd" id="5_movable"]
+[ext_resource type="Script" path="res://scripts/placement_target.gd" id="6_placement"]
+[ext_resource type="Script" path="res://scripts/neutral_test.gd" id="7_controller"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(12, 0.2, 12)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(12, 0.2, 12)
+
+[sub_resource type="BoxMesh" id="NorthSouthMesh"]
+size = Vector3(12, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="NorthSouthShape"]
+size = Vector3(12, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="EastWestMesh"]
+size = Vector3(0.2, 3, 12)
+
+[sub_resource type="BoxShape3D" id="EastWestShape"]
+size = Vector3(0.2, 3, 12)
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.45, 0.45, 0.45, 1)
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.62, 0.62, 0.62, 1)
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.12, 0.12, 0.12, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="NeutralTest" type="Node3D"]
+script = ExtResource("7_controller")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -30, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.1, 0)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+material_override = SubResource("FloorMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, -6)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("NorthSouthMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("NorthSouthShape")
+
+[node name="WallSouth" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, 6)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallSouth"]
+mesh = SubResource("NorthSouthMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth"]
+shape = SubResource("NorthSouthShape")
+
+[node name="WallEast" type="StaticBody3D" parent="."]
+position = Vector3(6, 1.5, 0)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEast"]
+mesh = SubResource("EastWestMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast"]
+shape = SubResource("EastWestShape")
+
+[node name="WallWest" type="StaticBody3D" parent="."]
+position = Vector3(-6, 1.5, 0)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallWest"]
+mesh = SubResource("EastWestMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest"]
+shape = SubResource("EastWestShape")
+
+[node name="CleanablePanel" type="StaticBody3D" parent="."]
+position = Vector3(0, 0.05, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+
+[node name="VerticalCleanable" type="StaticBody3D" parent="."]
+position = Vector3(-3, 0.02, -5.85)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_vertical")
+
+[node name="CubeCleanable" type="StaticBody3D" parent="."]
+position = Vector3(3, 0.5, -1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_cube")
+
+[node name="MovableObject" type="StaticBody3D" parent="."]
+position = Vector3(-3, 0.25, 2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_movable")
+
+[node name="PlacementTarget" type="Area3D" parent="."]
+position = Vector3(3, 0.025, 2)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_placement")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1, 3)
