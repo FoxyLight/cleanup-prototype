@@ -1,5 +1,7 @@
 extends Node3D
 
+signal entrance_cue_triggered
+
 const REQUIRED_TARGET_IDS: Array[StringName] = [
 	&"entrance_paving",
 	&"entrance_sign",
@@ -23,11 +25,17 @@ const REQUIRED_TARGET_IDS: Array[StringName] = [
 
 const TOTAL_REQUIRED_TARGETS: int = 18
 
+const ENTRANCE_PAVING_ID: StringName = &"entrance_paving"
+const ENTRANCE_SIGN_ID: StringName = &"entrance_sign"
+
 var _registered_targets: Dictionary = {}
 var _completed_targets: Dictionary = {}
 
 var _unfinished_count: int = TOTAL_REQUIRED_TARGETS
 var _progress_label: Label
+
+var _entrance_cue_active: bool = false
+var _entrance_sign: Node
 
 
 func _ready() -> void:
@@ -175,6 +183,9 @@ func _try_connect_target(
 		)
 		return
 
+	if target_id == ENTRANCE_SIGN_ID:
+		_entrance_sign = node
+
 	found_target_ids[target_id] = true
 
 
@@ -225,6 +236,7 @@ func record_completion(
 	)
 
 	_update_progress_ui()
+	_update_entrance_cue(target_id)
 
 	print(
 		"Theme Park target completed: ",
@@ -236,6 +248,55 @@ func record_completion(
 	return true
 
 
+func _update_entrance_cue(
+	target_id: StringName
+) -> void:
+	if _entrance_cue_active:
+		return
+
+	if (
+		target_id != ENTRANCE_PAVING_ID
+		and target_id != ENTRANCE_SIGN_ID
+	):
+		return
+
+	if not _completed_targets.has(
+		ENTRANCE_PAVING_ID
+	):
+		return
+
+	if not _completed_targets.has(
+		ENTRANCE_SIGN_ID
+	):
+		return
+
+	_activate_entrance_cue()
+
+
+func _activate_entrance_cue() -> void:
+	if _entrance_cue_active:
+		return
+
+	_entrance_cue_active = true
+
+	if (
+		_entrance_sign != null
+		and _entrance_sign.has_method(
+			"set_local_completion_cue"
+		)
+	):
+		_entrance_sign.call(
+			"set_local_completion_cue",
+			true
+		)
+
+	entrance_cue_triggered.emit()
+
+	print(
+		"Theme Park entrance/plaza local cue activated"
+	)
+
+
 func reset_progress() -> void:
 	_completed_targets.clear()
 
@@ -243,6 +304,7 @@ func reset_progress() -> void:
 		TOTAL_REQUIRED_TARGETS
 	)
 
+	reset_entrance_cue()
 	_update_progress_ui()
 
 	print(
@@ -250,6 +312,20 @@ func reset_progress() -> void:
 		_unfinished_count,
 		" unfinished"
 	)
+
+
+func reset_entrance_cue() -> void:
+	_entrance_cue_active = false
+
+	if (
+		_entrance_sign != null
+		and _entrance_sign.has_method(
+			"reset_local_completion_cue"
+		)
+	):
+		_entrance_sign.call(
+			"reset_local_completion_cue"
+		)
 
 
 func _update_progress_ui() -> void:
@@ -285,3 +361,23 @@ func get_progress_text() -> String:
 		return ""
 
 	return _progress_label.text
+
+
+func is_entrance_cue_active() -> bool:
+	return _entrance_cue_active
+
+
+func is_entrance_cue_visual_active() -> bool:
+	if _entrance_sign == null:
+		return false
+
+	if not _entrance_sign.has_method(
+		"is_local_completion_visual_active"
+	):
+		return false
+
+	return bool(
+		_entrance_sign.call(
+			"is_local_completion_visual_active"
+		)
+	)
