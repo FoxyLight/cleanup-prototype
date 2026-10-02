@@ -1,39 +1,70 @@
 # DOCUMENTATION_INDEX
 
-## SPBT authority
+Project: Cleanup Game
+Process: SPBT
 
+## Documentation authority
+
+Google Drive folder:
+Cleanup Game
+
+Drive folder:
+https://drive.google.com/drive/folders/1Js0W5xkTclsVeg6NLTujLn7TvoUeSmTt
+
+Authoritative documents:
+- PROJECT_STATUS.md
+  https://docs.google.com/document/d/12R0_F_bCBya6-Iy_FY7PkR3bMDx79bPn46qKNcuO2RQ/edit
+
+- DECISIONS.md
+  https://docs.google.com/document/d/18RRyNWi7jcvJG1ucyEcN16dJNkdpVt2GsHjFPYtzx30/edit
+
+- DOCUMENTATION_INDEX.md
+  https://docs.google.com/document/d/1SHHfQ8CCsBWA9PqV3cmJjJ2jx2sofkAcRkphIzcDMqQ/edit
+
+Google Drive is authoritative for project documentation.
+
+## Implementation/source-history authority
+
+Repository:
+FoxyLight/cleanup-prototype
+
+Integration branch:
+main
+
+GitHub is authoritative for executable implementation and source history.
+
+Authoritative CP4A implementation baseline:
+60a8d203f6681ad21f3548a2d9c30bf779c26914
+
+SPBT onboarding closure commit:
+890dc2d
+
+## Repository-local authority copies
+
+Repository paths:
 - docs/PROJECT_STATUS.md
-  Current project status, repository authority, checkpoint state, verification state, and Next Evidence Source.
-
 - docs/DECISIONS.md
-  Accepted project-level SPBT decisions and historical reconciliation decisions.
-
 - docs/DOCUMENTATION_INDEX.md
-  Index of authoritative project documentation.
 
-## Implementation authority
+These are synchronized copies of Drive authority at decision/checkpoint boundaries. They do not replace Drive as project-documentation authority.
 
-- project.godot
-  Godot project configuration for the validated Shared Interaction Baseline.
-
-- scenes/
-  Authoritative Godot scenes.
-
-- scripts/
-  Authoritative gameplay and Theme Park implementation scripts.
+## Automated verification
 
 - tests/run_tests.gd
-  Shared Interaction Baseline automated regression suite.
+  Shared Interaction Baseline regression suite.
 
 - tests/theme_park_loose_mess_tests.gd
-  Theme Park loose-mess automated verification.
+  Theme Park loose-mess regression suite.
 
 - tests/theme_park_progress_tests.gd
-  Theme Park 18-target progress automated verification.
+  Theme Park 18-target progress regression suite.
 
-## Current checkpoint authority
+- tests/theme_park_entrance_cue_tests.gd
+  Theme Park Checkpoint 5 Entrance/Plaza cue verification. Present in the current local checkpoint candidate and awaiting repository commit/integration.
 
-Validated:
+## Current checkpoint routing
+
+Validated / closed:
 - Shared Interaction Baseline v0.1.3
 - Theme Park Checkpoint 1
 - Theme Park Checkpoint 2
@@ -41,17 +72,20 @@ Validated:
 - Theme Park Checkpoint 4
 - Theme Park Checkpoint 4A
 
-Not yet authoritative:
-- Theme Park Checkpoint 5
-- final carousel payoff
+Active:
+- Theme Park Checkpoint 5 — IMPLEMENTED / VERIFIED / HUMAN APPROVAL PASS / AWAITING REPOSITORY COMMIT AND INTEGRATION
+
+Not authorized yet:
+- final 18-target carousel payoff
 - Movie Studio implementation
 
 ## Historical evidence
 
-Previous validated working tree:
-
+Historical validated recovery tree:
 C:\Users\jneal\Downloads\cleanup-prototype-validation
 
-This location is historical evidence only after repository onboarding closes.
+This path is historical evidence only. GitHub now owns implementation/source history.
 
-GitHub becomes implementation/source-history authority once the initial validated baseline commit is pushed and its immutable SHA is recorded.
+## Synchronization requirement
+
+At checkpoint closure, update Drive authority and repository-local authority copies to the same checkpoint state and record the immutable integrated main SHA before declaring PASS / CLOSED.
