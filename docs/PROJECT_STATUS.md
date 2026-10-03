@@ -63,34 +63,41 @@ fc61e8f8b865efbe22b969313a2a19e8971590b7
 MS-CP1 integrated main SHA:
 94717afd774bb0f6ab8b6b394d0b4f3addc97c09
 
-MS-CP1 evidence:
-- saloon shell implemented
-- exactly five cleanable targets
-- shared cleaning system reused
-- no DISCARD targets
-- no RETURN targets
-- no RESET targets
-- no Movie Studio progress integration
-- no final payoff
-- vertical UV stretching on back wall and saloon doors corrected
+MS-CP2 — Seven DISCARD Targets:
+PASS / CLOSED
+
+MS-CP2 candidate SHA:
+38a23ecfe61eec9517885320ec29e374f0c55bb7
+
+MS-CP2 integrated main SHA:
+6c75ebac1a3aa686ce34bc813104b8b1f8d5b0cd
+
+MS-CP2 evidence:
+- exactly seven discard objects
+- one-shot E interaction
+- successful discard immediately hides the object
+- discard targets never enter carry state
+- duplicate completion is rejected
+- reset restores target visibility and eligibility
+- exactly five MS-CP1 cleanables remain unchanged
 - automated verification PASS
 - protected regressions PASS
-- human readability/usability approval PASS
-- working tree clean before integration
+- human approval PASS
+- Godot UID files tracked
+- clean candidate integrated into main
 
 ## Next Evidence Source
 
-Movie Studio MS-CP2 — Seven DISCARD Targets.
+Movie Studio MS-CP3 — Four RETURN Targets.
 
-MS-CP2 scope:
-- add exactly seven obvious discard objects
-- one-shot E interaction
-- object disappears from the scene on successful discard
-- no carrying
-- no inventory
-- no bins or sorting
-- no RETURN targets
+MS-CP3 scope:
+- add exactly four reusable props
+- use the existing carry/place interaction
+- each prop has one clearly readable return destination
+- successful placement completes the target
+- no DISCARD changes
 - no RESET targets
+- no progress integration
 - no final payoff
 - no Shared Interaction Baseline changes
 
@@ -98,6 +105,7 @@ MS-CP2 scope:
 
 Theme Park is closed.
 MS-CP1 is closed.
-MS-CP2 is the next authorized implementation checkpoint.
+MS-CP2 is closed.
+MS-CP3 is the next authorized implementation checkpoint.
 
 External Theme Park vs Movie Studio comparison remains deferred until the Movie Studio prototype is implemented and validated.
