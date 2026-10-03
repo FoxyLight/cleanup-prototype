@@ -52,27 +52,7 @@ MS-CP4 Two RESET Targets
 MS-CP5 18-Target Progress Integration
 MS-CP6 Final Set Recovery Payoff
 
-External concept comparison remains deferred until the Movie Studio slice is implemented and validated.
-
-## D-007 — MS-CP1 scope
-Status: ACCEPTED
-
-MS-CP1 is limited to:
-- Western saloon aftermath shell
-- exactly five dirty cleanable surfaces
-- reuse of the existing shared cleaning system
-- no DISCARD, RETURN, RESET, final payoff, or shared-baseline changes
-
-## D-008 — MS-CP1 vertical UV correction
-Status: ACCEPTED
-
-During MS-CP1 human review, the saloon doors and back-wall cleanables showed stretched cleaning marks.
-
-The Movie Studio vertical cleanable geometry was corrected so world X maps to UV U and world Y maps to UV V.
-
-This is a bounded MS-CP1 presentation/accessibility correction and does not change Shared Interaction Baseline v0.1.3.
-
-## D-009 — MS-CP1 closure
+## D-007 — MS-CP1 closure
 Status: ACCEPTED
 
 Movie Studio MS-CP1 is PASS / CLOSED.
@@ -83,22 +63,55 @@ fc61e8f8b865efbe22b969313a2a19e8971590b7
 Authoritative integrated main SHA:
 94717afd774bb0f6ab8b6b394d0b4f3addc97c09
 
+## D-008 — MS-CP2 scope
+Status: ACCEPTED
+
+MS-CP2 is limited to exactly seven obvious discard objects.
+
+Behavior:
+- one-shot E interaction
+- object disappears on successful discard
+- no carrying
+- no bins
+- no sorting
+- no inventory
+- no RETURN
+- no RESET
+- no final payoff
+- no shared-baseline changes
+
+## D-009 — MS-CP2 closure
+Status: ACCEPTED
+
+Movie Studio MS-CP2 is PASS / CLOSED.
+
+Candidate SHA:
+38a23ecfe61eec9517885320ec29e374f0c55bb7
+
+Authoritative integrated main SHA:
+6c75ebac1a3aa686ce34bc813104b8b1f8d5b0cd
+
 Evidence:
-- exactly five cleanables
-- MS-CP1 automated tests PASS
+- exactly seven DISCARD targets
+- automated verification PASS
 - protected regressions PASS
-- vertical UV correction PASS
 - explicit human approval PASS
+- duplicate completion rejected
+- reset behavior verified
 - Godot UID files tracked
 - clean candidate integrated into main
 
 ## D-010 — Next Evidence Source
 Status: ACCEPTED
 
-The next authorized checkpoint is MS-CP2 — Seven DISCARD Targets.
+The next authorized checkpoint is MS-CP3 — Four RETURN Targets.
 
-MS-CP2 must:
-- add exactly seven obvious discard objects
-- use one-shot E interaction
-- remove the object immediately on successful discard
-- add no carrying, bins, sorting, inventory, RETURN, RESET, final payoff, or shared-baseline changes
+MS-CP3 must:
+- add exactly four reusable props
+- use the existing carry/place interaction
+- provide one readable destination for each prop
+- complete a target only on successful return placement
+- add no RESET targets
+- add no progress integration
+- add no final payoff
+- preserve Shared Interaction Baseline v0.1.3
