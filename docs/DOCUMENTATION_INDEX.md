@@ -34,11 +34,11 @@ Authoritative CP4A implementation baseline:
 Authoritative Theme Park Checkpoint 5 integrated implementation SHA:
 797cd169c1e81e3277291af892d5d4014c4acfe2
 
-Checkpoint 5 candidate commit:
-1f9711e
+Authoritative Theme Park Final Payoff integrated implementation SHA:
+81694ccc5d1d3fa977bae6940b958dff003992cd
 
-Checkpoint 5 merge commit:
-4a0b941
+Final Payoff candidate commit:
+b6b3ae66fc38966832b0899725913b19bb997471
 
 ## Repository-local authority copies
 
@@ -46,21 +46,13 @@ Checkpoint 5 merge commit:
 - docs/DECISIONS.md
 - docs/DOCUMENTATION_INDEX.md
 
-These mirror Drive authority at decision/checkpoint boundaries.
-
 ## Automated verification
 
 - tests/run_tests.gd
-  Shared Interaction Baseline regression suite.
-
 - tests/theme_park_loose_mess_tests.gd
-  Theme Park loose-mess regression suite.
-
 - tests/theme_park_progress_tests.gd
-  Theme Park 18-target progress regression suite.
-
 - tests/theme_park_entrance_cue_tests.gd
-  Theme Park Checkpoint 5 entrance/plaza cue verification.
+- tests/theme_park_final_payoff_tests.gd
 
 ## Current checkpoint routing
 
@@ -72,14 +64,15 @@ PASS / CLOSED:
 - Theme Park Checkpoint 4
 - Theme Park Checkpoint 4A
 - Theme Park Checkpoint 5
+- Theme Park Final 18-target Carousel Payoff
+- Theme Park Restoration vertical slice
 
-Next authorized:
-- final 18-target carousel payoff
+Next Evidence Source:
+- prepare bounded Movie Studio Cleanup implementation checkpoint from the frozen "After the Saloon Fight" design
 
-Not authorized:
+Not started:
 - Movie Studio implementation
-- Shared Interaction Baseline changes
-- unrelated workflow infrastructure
+- external concept comparison
 
 ## Historical evidence
 
@@ -90,4 +83,4 @@ This path is historical evidence only. GitHub owns implementation/source history
 
 ## Synchronization state
 
-Drive authority and repository-local authority copies are synchronized at the Checkpoint 5 closure boundary.
+Drive authority and repository-local authority copies record the final Theme Park implementation closure at integrated SHA 81694ccc5d1d3fa977bae6940b958dff003992cd.
