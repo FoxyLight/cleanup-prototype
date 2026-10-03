@@ -44,14 +44,18 @@ func _get_geometry_config() -> Dictionary:
 			Vector3(half_width, 0.0, -half_height)
 		])
 	else:
+		# Keep the vertical surface's world X axis aligned with UV U
+		# and world Y axis aligned with UV V. The previous vertex order
+		# crossed those axes, which visibly stretched the cleaning brush
+		# on rectangular vertical surfaces such as the back wall and doors.
 		vertices = PackedVector3Array([
 			Vector3(-half_width, -half_height, 0.0),
-			Vector3(half_width, half_height, 0.0),
 			Vector3(-half_width, half_height, 0.0),
+			Vector3(half_width, half_height, 0.0),
 
 			Vector3(-half_width, -half_height, 0.0),
-			Vector3(half_width, -half_height, 0.0),
-			Vector3(half_width, half_height, 0.0)
+			Vector3(half_width, half_height, 0.0),
+			Vector3(half_width, -half_height, 0.0)
 		])
 
 	var uv2 := PackedVector2Array([
