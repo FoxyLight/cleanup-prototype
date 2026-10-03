@@ -29,24 +29,19 @@ SPBT onboarding closure commit:
 Authoritative Theme Park Checkpoint 5 integrated implementation SHA:
 797cd169c1e81e3277291af892d5d4014c4acfe2
 
-Checkpoint 5 candidate commit:
-1f9711e
+Authoritative Theme Park Final Payoff integrated implementation SHA:
+81694ccc5d1d3fa977bae6940b958dff003992cd
 
-Checkpoint 5 merge commit:
-4a0b941
+Final Payoff candidate commit:
+b6b3ae66fc38966832b0899725913b19bb997471
 
 Shared Interaction Baseline v0.1.3:
 PASS / FROZEN
 
-Frozen values:
-- movement speed: 4.5 m/s
-- interaction distance: 4.0 m
-- cleaning brush radius: 0.22 m
-- dirt texel density: 64 texels/m
-- cleaning rate: 6.0 dirt units/sec
-- cleanable completion threshold: 95%
-
 ## Theme Park Restoration state
+
+Theme Park Restoration vertical slice:
+PASS / CLOSED
 
 Closed checkpoints:
 - Checkpoint 1: PASS / CLOSED
@@ -55,52 +50,32 @@ Closed checkpoints:
 - Checkpoint 4: PASS / CLOSED
 - Checkpoint 4A: PASS / CLOSED
 - Checkpoint 5: PASS / CLOSED
+- Final 18-target carousel payoff: PASS / CLOSED
 
-Validated Theme Park content:
-- 8 cleanable surfaces
-- 7 litter objects
-- 3 debris clusters
-- 18 total required targets
+Final payoff behavior:
+- triggers only at 18/18 completion
+- carousel bulbs illuminate
+- short musical phrase plays
+- carousel horse performs one gentle vertical motion
+- one-shot per completion cycle
+- reset restores payoff state
+- entrance/plaza cue remains intact
+- frozen Shared Interaction Baseline remains unchanged
 
-Checkpoint 5 behavior:
-- requires both entrance_paving and entrance_sign
-- either completion order works
-- triggers once per completion cycle
-- uses the existing 18-target progress controller
-- produces a restrained local visual cue on the entrance sign
-- resets cleanly
-- does not alter the frozen Shared Interaction Baseline
+Final payoff verification:
+- automated tests: PASS
+- regressions: PASS
+- human approval: PASS
 
-Checkpoint 5 automated verification:
-- Godot parse/load integrity: PASS
-- Theme Park entrance cue tests: PASS
-- Theme Park progress regression: PASS
-- Theme Park loose-mess regression: PASS
-- Shared Interaction Baseline regression: PASS
-
-Checkpoint 5 human approval:
-PASS
-
-Repository hygiene:
-- final integrated main working tree: CLEAN
-- Godot test UID tracked
-- final integrated implementation SHA: 797cd169c1e81e3277291af892d5d4014c4acfe2
+Bounded corrective change:
+- carousel horse saddle face group 21 is excluded from required cleaning because the neck obstructs practical access
+- Shared Interaction Baseline constants are unchanged
 
 ## Movie Studio Cleanup
 
-Design exists.
-Implementation is not yet authorized.
+Frozen design exists.
+Implementation has not started.
 
 ## Next Evidence Source
 
-Design and implement the final 18-target carousel payoff from the immutable Checkpoint 5 integrated baseline.
-
-## Current boundary
-
-Authorized next:
-- final Theme Park 18-target carousel payoff
-
-Not authorized:
-- Movie Studio implementation
-- changes to Shared Interaction Baseline v0.1.3
-- unrelated workflow infrastructure
+Prepare the bounded Movie Studio Cleanup implementation checkpoint from the frozen "After the Saloon Fight" design, then stop at the SPBT authorization boundary before implementation.
