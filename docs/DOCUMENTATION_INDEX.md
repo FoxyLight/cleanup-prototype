@@ -28,17 +28,14 @@ main
 
 GitHub is authoritative for executable implementation and source history.
 
-Authoritative CP4A implementation baseline:
-60a8d203f6681ad21f3548a2d9c30bf779c26914
-
-Authoritative Theme Park Checkpoint 5 integrated implementation SHA:
-797cd169c1e81e3277291af892d5d4014c4acfe2
-
-Authoritative Theme Park Final Payoff integrated implementation SHA:
+Theme Park final integrated implementation SHA:
 81694ccc5d1d3fa977bae6940b958dff003992cd
 
-Final Payoff candidate commit:
-b6b3ae66fc38966832b0899725913b19bb997471
+Movie Studio MS-CP1 candidate SHA:
+fc61e8f8b865efbe22b969313a2a19e8971590b7
+
+Movie Studio MS-CP1 integrated main SHA:
+94717afd774bb0f6ab8b6b394d0b4f3addc97c09
 
 ## Repository-local authority copies
 
@@ -48,39 +45,37 @@ b6b3ae66fc38966832b0899725913b19bb997471
 
 ## Automated verification
 
+Shared:
 - tests/run_tests.gd
+
+Theme Park:
 - tests/theme_park_loose_mess_tests.gd
 - tests/theme_park_progress_tests.gd
 - tests/theme_park_entrance_cue_tests.gd
 - tests/theme_park_final_payoff_tests.gd
 
+Movie Studio:
+- tests/movie_studio_cp1_tests.gd
+
 ## Current checkpoint routing
 
 PASS / CLOSED:
 - Shared Interaction Baseline v0.1.3
-- Theme Park Checkpoint 1
-- Theme Park Checkpoint 2
-- Theme Park Checkpoint 3B
-- Theme Park Checkpoint 4
-- Theme Park Checkpoint 4A
-- Theme Park Checkpoint 5
-- Theme Park Final 18-target Carousel Payoff
 - Theme Park Restoration vertical slice
+- Movie Studio MS-CP0 — Authority + Slice Contract
+- Movie Studio MS-CP1 — Saloon Shell + Five Cleanables
 
-Next Evidence Source:
-- prepare bounded Movie Studio Cleanup implementation checkpoint from the frozen "After the Saloon Fight" design
+Next authorized:
+- Movie Studio MS-CP2 — Seven DISCARD Targets
 
-Not started:
-- Movie Studio implementation
-- external concept comparison
-
-## Historical evidence
-
-Historical validated recovery tree:
-C:\Users\jneal\Downloads\cleanup-prototype-validation
-
-This path is historical evidence only. GitHub owns implementation/source history.
+Not yet implemented:
+- MS-CP2 DISCARD
+- MS-CP3 RETURN
+- MS-CP4 RESET
+- MS-CP5 18-target progress integration
+- MS-CP6 final set recovery payoff
+- external Theme Park vs Movie Studio comparison
 
 ## Synchronization state
 
-Drive authority and repository-local authority copies record the final Theme Park implementation closure at integrated SHA 81694ccc5d1d3fa977bae6940b958dff003992cd.
+Drive authority and repository-local authority copies record MS-CP1 closure at integrated SHA 94717afd774bb0f6ab8b6b394d0b4f3addc97c09.
