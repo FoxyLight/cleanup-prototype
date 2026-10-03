@@ -37,6 +37,12 @@ fc61e8f8b865efbe22b969313a2a19e8971590b7
 Movie Studio MS-CP1 integrated main SHA:
 94717afd774bb0f6ab8b6b394d0b4f3addc97c09
 
+Movie Studio MS-CP2 candidate SHA:
+38a23ecfe61eec9517885320ec29e374f0c55bb7
+
+Movie Studio MS-CP2 integrated main SHA:
+6c75ebac1a3aa686ce34bc813104b8b1f8d5b0cd
+
 ## Repository-local authority copies
 
 - docs/PROJECT_STATUS.md
@@ -56,6 +62,7 @@ Theme Park:
 
 Movie Studio:
 - tests/movie_studio_cp1_tests.gd
+- tests/movie_studio_cp2_tests.gd
 
 ## Current checkpoint routing
 
@@ -64,12 +71,12 @@ PASS / CLOSED:
 - Theme Park Restoration vertical slice
 - Movie Studio MS-CP0 — Authority + Slice Contract
 - Movie Studio MS-CP1 — Saloon Shell + Five Cleanables
-
-Next authorized:
 - Movie Studio MS-CP2 — Seven DISCARD Targets
 
+Next authorized:
+- Movie Studio MS-CP3 — Four RETURN Targets
+
 Not yet implemented:
-- MS-CP2 DISCARD
 - MS-CP3 RETURN
 - MS-CP4 RESET
 - MS-CP5 18-target progress integration
@@ -78,4 +85,4 @@ Not yet implemented:
 
 ## Synchronization state
 
-Drive authority and repository-local authority copies record MS-CP1 closure at integrated SHA 94717afd774bb0f6ab8b6b394d0b4f3addc97c09.
+Drive authority and repository-local authority copies record MS-CP2 closure at integrated SHA 6c75ebac1a3aa686ce34bc813104b8b1f8d5b0cd.
