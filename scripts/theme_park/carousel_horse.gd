@@ -43,7 +43,7 @@ func _get_geometry_config() -> Dictionary:
 	# 18  top        required
 	# 19  left       required
 	# 20  right      required
-	# 21  front      required
+	# 21  front      excluded because neck obstructs access
 	# 22  rear       required
 	# 23  bottom     excluded
 
@@ -716,7 +716,7 @@ func _get_geometry_config() -> Dictionary:
 		),
 		bounds[21],
 		21,
-		true
+		false
 	)
 
 	# Rear.
