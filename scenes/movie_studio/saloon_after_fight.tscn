@@ -1,0 +1,207 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/movie_studio/movie_studio_cleanable.gd" id="2_cleanable"]
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(14, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(14, 0.2, 10)
+
+[sub_resource type="BoxMesh" id="LongWallMesh"]
+size = Vector3(14, 3.6, 0.2)
+
+[sub_resource type="BoxShape3D" id="LongWallShape"]
+size = Vector3(14, 3.6, 0.2)
+
+[sub_resource type="BoxMesh" id="SideWallMesh"]
+size = Vector3(0.2, 3.6, 10)
+
+[sub_resource type="BoxShape3D" id="SideWallShape"]
+size = Vector3(0.2, 3.6, 10)
+
+[sub_resource type="BoxMesh" id="BarMesh"]
+size = Vector3(3.6, 1.0, 0.9)
+
+[sub_resource type="BoxShape3D" id="BarShape"]
+size = Vector3(3.6, 1.0, 0.9)
+
+[sub_resource type="BoxMesh" id="TableBaseMesh"]
+size = Vector3(1.8, 0.75, 1.0)
+
+[sub_resource type="BoxShape3D" id="TableBaseShape"]
+size = Vector3(1.8, 0.75, 1.0)
+
+[sub_resource type="BoxMesh" id="DoorFrameMesh"]
+size = Vector3(2.6, 2.4, 0.18)
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.29, 0.18, 0.10, 1)
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.48, 0.33, 0.19, 1)
+
+[sub_resource type="StandardMaterial3D" id="BarMaterial"]
+albedo_color = Color(0.34, 0.20, 0.10, 1)
+
+[sub_resource type="StandardMaterial3D" id="TrimMaterial"]
+albedo_color = Color(0.16, 0.10, 0.06, 1)
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.52, 0.42, 0.31, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 0.86, 0.68, 1)
+ambient_light_energy = 0.58
+
+[node name="SaloonAfterFight" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-50, -28, 0)
+light_energy = 0.9
+shadow_enabled = true
+
+[node name="BaseFloor" type="StaticBody3D" parent="."]
+position = Vector3(7, -0.1, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseFloor"]
+mesh = SubResource("FloorMesh")
+material_override = SubResource("FloorMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseFloor"]
+shape = SubResource("FloorShape")
+
+[node name="NorthWall" type="StaticBody3D" parent="."]
+position = Vector3(7, 1.8, 10)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NorthWall"]
+mesh = SubResource("LongWallMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthWall"]
+shape = SubResource("LongWallShape")
+
+[node name="EastWall" type="StaticBody3D" parent="."]
+position = Vector3(14, 1.8, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EastWall"]
+mesh = SubResource("SideWallMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EastWall"]
+shape = SubResource("SideWallShape")
+
+[node name="WestWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.8, 5)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WestWall"]
+mesh = SubResource("SideWallMesh")
+material_override = SubResource("WallMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestWall"]
+shape = SubResource("SideWallShape")
+
+[node name="BarBase" type="StaticBody3D" parent="."]
+position = Vector3(10.8, 0.5, 3.0)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarBase"]
+mesh = SubResource("BarMesh")
+material_override = SubResource("BarMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarBase"]
+shape = SubResource("BarShape")
+
+[node name="FightTableBase" type="StaticBody3D" parent="."]
+position = Vector3(4.1, 0.375, 6.2)
+collision_layer = 1
+collision_mask = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FightTableBase"]
+mesh = SubResource("TableBaseMesh")
+material_override = SubResource("BarMaterial")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FightTableBase"]
+shape = SubResource("TableBaseShape")
+
+[node name="DoorFrame" type="MeshInstance3D" parent="."]
+position = Vector3(7, 1.2, 0.18)
+mesh = SubResource("DoorFrameMesh")
+material_override = SubResource("TrimMaterial")
+
+[node name="FloorSpill" type="StaticBody3D" parent="."]
+position = Vector3(6.8, 0.02, 6.1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+target_id = &"saloon_floor"
+width_m = 5.5
+height_m = 4.2
+orientation = 0
+clean_color = Color(0.42, 0.27, 0.14, 1)
+dirty_color = Color(0.16, 0.08, 0.03, 1)
+
+[node name="BarTop" type="StaticBody3D" parent="."]
+position = Vector3(10.8, 1.02, 3.0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+target_id = &"bar_top"
+width_m = 3.2
+height_m = 0.78
+orientation = 0
+clean_color = Color(0.48, 0.27, 0.12, 1)
+dirty_color = Color(0.18, 0.08, 0.03, 1)
+
+[node name="BackWallSplatter" type="StaticBody3D" parent="."]
+position = Vector3(10.8, 1.7, 9.88)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+target_id = &"back_wall"
+width_m = 3.6
+height_m = 2.2
+orientation = 1
+clean_color = Color(0.57, 0.39, 0.22, 1)
+dirty_color = Color(0.20, 0.10, 0.04, 1)
+
+[node name="FightTableTop" type="StaticBody3D" parent="."]
+position = Vector3(4.1, 0.77, 6.2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+target_id = &"fight_table"
+width_m = 1.8
+height_m = 1.0
+orientation = 0
+clean_color = Color(0.44, 0.24, 0.10, 1)
+dirty_color = Color(0.16, 0.07, 0.03, 1)
+
+[node name="SaloonDoors" type="StaticBody3D" parent="."]
+position = Vector3(7, 1.15, 0.28)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_cleanable")
+target_id = &"saloon_doors"
+width_m = 2.1
+height_m = 1.6
+orientation = 1
+clean_color = Color(0.51, 0.30, 0.13, 1)
+dirty_color = Color(0.18, 0.08, 0.03, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(7, 1, 2.2)
+rotation_degrees = Vector3(0, 180, 0)
