@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/movie_studio/movie_studio_cleanable.gd" id="2_cleanable"]
+[ext_resource type="Script" path="res://scripts/movie_studio/discard_object.gd" id="3_discard"]
 
 [sub_resource type="BoxMesh" id="FloorMesh"]
 size = Vector3(14, 0.2, 10)
@@ -201,6 +202,55 @@ height_m = 1.6
 orientation = 1
 clean_color = Color(0.51, 0.30, 0.13, 1)
 dirty_color = Color(0.18, 0.08, 0.03, 1)
+
+[node name="DiscardBottle01" type="Area3D" parent="."]
+position = Vector3(3.0, 0.02, 4.4)
+script = ExtResource("3_discard")
+target_id = &"discard_bottle_01"
+discard_kind = 0
+tint = Color(0.24, 0.52, 0.34, 1)
+
+[node name="DiscardPaper01" type="Area3D" parent="."]
+position = Vector3(5.2, 0.02, 5.1)
+script = ExtResource("3_discard")
+target_id = &"discard_paper_01"
+discard_kind = 1
+tint = Color(0.76, 0.70, 0.52, 1)
+
+[node name="DiscardFood01" type="Area3D" parent="."]
+position = Vector3(8.0, 0.02, 7.5)
+script = ExtResource("3_discard")
+target_id = &"discard_food_01"
+discard_kind = 2
+tint = Color(0.52, 0.25, 0.12, 1)
+
+[node name="DiscardPlate01" type="Area3D" parent="."]
+position = Vector3(10.1, 0.02, 5.7)
+script = ExtResource("3_discard")
+target_id = &"discard_plate_01"
+discard_kind = 3
+tint = Color(0.72, 0.67, 0.58, 1)
+
+[node name="DiscardPaper02" type="Area3D" parent="."]
+position = Vector3(2.4, 0.02, 8.0)
+script = ExtResource("3_discard")
+target_id = &"discard_paper_02"
+discard_kind = 1
+tint = Color(0.64, 0.57, 0.40, 1)
+
+[node name="DiscardBottle02" type="Area3D" parent="."]
+position = Vector3(11.8, 0.02, 7.7)
+script = ExtResource("3_discard")
+target_id = &"discard_bottle_02"
+discard_kind = 0
+tint = Color(0.38, 0.46, 0.20, 1)
+
+[node name="DiscardFood02" type="Area3D" parent="."]
+position = Vector3(6.4, 0.02, 3.9)
+script = ExtResource("3_discard")
+target_id = &"discard_food_02"
+discard_kind = 2
+tint = Color(0.62, 0.31, 0.14, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector3(7, 1, 2.2)
